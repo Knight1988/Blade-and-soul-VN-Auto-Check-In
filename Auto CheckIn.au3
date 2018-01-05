@@ -10,8 +10,6 @@ Func _Exit()
 EndFunc
 
 Func _Main()
-   ; Copy example file if not created
-   If Not FileExists(@ScriptDir & "\Passwords.csv") Then FileCopy(@ScriptDir & "\Passwords Example.csv", @ScriptDir & "\Passwords.csv")
    ; Read password file to array
    Local $aUsers = FileReadToArray(@ScriptDir & "\Passwords.csv")
 
@@ -78,7 +76,7 @@ EndFunc
 Func _SelectCharacter()
    Const $GAME_TITLE = "Blade & Soul"
    ; Wait for game to load
-   Sleep(60000)
+   Sleep(90000)
 
    ; Activate game
    Local $hGame = WinWait($GAME_TITLE)
@@ -103,6 +101,12 @@ Func _CheckIn($Username)
    WinWaitActive($hGame)
 
    ; Cancel anything
+   Send("{ESC}")
+   Sleep(1000)
+
+   ; Open and close Item
+   Send("i")
+   Sleep(1000)
    Send("{ESC}")
    Sleep(1000)
 
